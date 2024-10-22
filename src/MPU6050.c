@@ -46,8 +46,6 @@
 #define PWR_MGMT_1 0x6B // Power Management 1
 #define WHO_AM_I 0x75   // Who Am I
 
-#define GRAVITY_CONSTANT 9.80665f
-
 int i2c_read_reg(struct i2c_information *i2c, const uint8_t reg, uint8_t *buf, const size_t len)
 {
     i2c_write_blocking(i2c->instance, i2c->address, &reg, 1, true);
