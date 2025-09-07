@@ -26,8 +26,7 @@
 #define MPU6050_ADDRESS_A0_VCC 0x69
 #define MPU6050_ADDRESS_A0_GND 0x68
 
-//#define GRAVITY_CONSTANT 9.80665f
-#define GRAVITY_CONSTANT 1.f
+#define GRAVITY_CONSTANT 9.80665f
 
 #ifdef __cplusplus
 extern "C"
