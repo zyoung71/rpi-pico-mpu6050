@@ -351,6 +351,14 @@ extern "C"
     struct mpu6050_vectorf *mpu6050_get_gyroscope(struct mpu6050 *self);
 
     /**
+     * @brief Calculates and returns a vector relative to a fixed axis.
+     * 
+     * @param mpu6050_t* self: Reference to itself
+     * @return mpu6050_vectorf_t: Float vector of acceleration data
+     */
+    struct mpu6050_vectorf mpu6050_get_fixed_accelerometer(struct mpu6050 *self);
+
+    /**
      * @brief Calculates and returns the temperature in celsius.
      * 
      * @param mpu6050_t* self: Reference to itself 
