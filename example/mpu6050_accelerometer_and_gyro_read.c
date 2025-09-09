@@ -64,8 +64,6 @@ int main()
         mpu6050_vectorf_t *accel = mpu6050_get_accelerometer(&mpu6050);
         mpu6050_vectorf_t *gyro = mpu6050_get_gyroscope(&mpu6050);
 
-        mpu6050_vectorf_t fixed_accel = mpu6050_get_fixed_accelerometer(&mpu6050);
-
         // Activity struct holding all interrupt flags
         mpu6050_activity_t *activities = mpu6050_read_activities(&mpu6050);
 
@@ -74,7 +72,7 @@ int main()
         float tempF = mpu6050_get_temperature_f(&mpu6050);
 
         // Print all the measurements
-        printf("Accelerometer: %f, %f, %f - Gyroscope: %f, %f, %f - World Accel: %f, %f. %f - Temperature: %f°C - Temperature: %f°F\n", accel->x, accel->y, accel->z, gyro->x, gyro->y, gyro->z, fixed_accel.x, fixed_accel.y, fixed_accel.z, tempC, tempF);
+        printf("Accelerometer: %f, %f, %f - Gyroscope: %f, %f, %f - Temperature: %f°C - Temperature: %f°F\n", accel->x, accel->y, accel->z, gyro->x, gyro->y, gyro->z, tempC, tempF);
 
         // Print all motion interrupt flags
         printf("Overflow: %d - Freefall: %d - Inactivity: %d, Activity: %d, DataReady: %d\n",

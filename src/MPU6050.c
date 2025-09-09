@@ -459,39 +459,6 @@ struct mpu6050_vectorf *mpu6050_get_gyroscope(struct mpu6050 *self)
     return NULL;
 }
 
-struct mpu6050_vectorf mpu6050_get_fixed_accelerometer(struct mpu6050 *self)
-{
-    mpu6050_vectorf_t *accel = mpu6050_get_scaled_accelerometer(self);
-    mpu6050_vectorf_t *gyro = mpu6050_get_gyroscope(self);
-
-    float croll = cosf(gyro->x), sroll = sinf(gyro->x);
-    float cpitch = cosf(gyro->y), spitch = sinf(gyro->y);
-    float cyaw = cosf(gyro->z), syaw = sinf(gyro->z);
-
-    float mat00 = croll * cpitch;
-    float mat01 = croll * spitch * syaw - sroll * cyaw;
-    float mat02 = croll * spitch * cyaw + sroll * syaw;
-
-    float mat10 = sroll * cpitch;
-    float mat11 = sroll * spitch * syaw + croll * cyaw;
-    float mat12 = sroll * spitch * cyaw - croll * syaw;
-
-    float mat20 = -spitch;
-    float mat21 = cpitch * syaw;
-    float mat22 = cpitch * cyaw;
-
-    float xbody = accel->x;
-    float ybody = accel->y;
-    float zbody = accel->z;
-    
-    mpu6050_vectorf_t fixed;
-    fixed.x = mat00 * xbody + mat01 * ybody + mat02 * zbody;
-    fixed.y = mat10 * xbody + mat11 * ybody + mat12 * zbody;
-    fixed.z = mat20 * xbody + mat21 * ybody + mat22 * zbody;
-
-    return fixed;
-}
-
 float mpu6050_get_temperature_c(struct mpu6050 *self)
 {
     if (self->temperature != 0.0f)
