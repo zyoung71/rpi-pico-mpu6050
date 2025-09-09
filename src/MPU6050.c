@@ -153,6 +153,9 @@ uint8_t mpu6050_event(struct mpu6050 *self)
     self->na.x = 0.0f;
     self->na.y = 0.0f;
     self->na.z = 0.0f;
+    self->sa.x = 0.0f;
+    self->sa.y = 0.0f;
+    self->sa.z = 0.0f;
     self->raw_temperature = 0;
     self->temperature = 0.0f;
     self->temperaturef = 0.0f;
